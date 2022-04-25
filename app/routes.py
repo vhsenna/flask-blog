@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from forms import NameForm
+from app.forms import NameForm
 
 @app.route('/')
 def index():
@@ -15,7 +15,7 @@ def name():
     name = None
     form = NameForm()
     # Validate form
-    if form.validade_on_submit():
+    if form.validate_on_submit():
         name = form.name.data
         form.name.data = ''
     return render_template('name.html', name=name, form=form)
