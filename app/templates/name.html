@@ -15,6 +15,7 @@
 <img src="{{ url_for('static', filename='images/image-name.jpg', width=500) }}" alt="">
 <br><br>
 <p id='demo'>This is stuff...</p>
+<script src="{{ url_for('static', filename='js/my_file.js/')}}"></script>
 {% else  %}
 <form class="w-25" method="POST" action="">
   {{ form.hidden_tag() }}
