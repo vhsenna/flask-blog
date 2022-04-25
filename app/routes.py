@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, flash
 from app import app
 from app.forms import NameForm
 
@@ -18,4 +18,5 @@ def name():
     if form.validate_on_submit():
         name = form.name.data
         form.name.data = ''
+        flash('Form submitted successfully!')
     return render_template('name.html', name=name, form=form)
