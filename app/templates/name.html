@@ -12,7 +12,9 @@
 {% if name %}
 <h1>Hello, {{ name }}!</h1>
 <br>
-<img src="{{ url_for('static', filename='images/image-name' width=500px) }}" alt="">
+<img src="{{ url_for('static', filename='images/image-name.jpg', width=500) }}" alt="">
+<br><br>
+<p id='demo'>This is stuff...</p>
 {% else  %}
 <form class="w-25" method="POST" action="">
   {{ form.hidden_tag() }}
