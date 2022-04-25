@@ -1,5 +1,6 @@
 from flask import render_template
 from app import app
+from forms import NameForm
 
 @app.route('/')
 def index():
@@ -8,3 +9,13 @@ def index():
 @app.route('/user/<name>')
 def user(name):
     return render_template('user.html', name=name)
+
+@app.route('/name', methods=['GET', 'POST'])
+def name():
+    name = None
+    form = NameForm()
+    # Validate form
+    if form.validade_on_submit():
+        name = form.name.data
+        form.name.data = ''
+    return render_template('name.html', name=name, form=form)
