@@ -1,6 +1,7 @@
 from flask import render_template, flash
 from app import app
 from app.forms import *
+from app.models import *
 
 @app.route('/')
 def index():
@@ -23,5 +24,9 @@ def name():
 
 @app.route('/user/add', methods=['GET', 'POST'])
 def add_user():
+    name = None
     form = UserForm()
-    return render_template('add_user.html', form=form)
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        flash('User added successfully!')
+    return render_template('add_user.html', name=name, form=form)
