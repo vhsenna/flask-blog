@@ -28,5 +28,12 @@ def add_user():
     form = UserForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
+        if user is None:
+            user = User(name=form.name.data, email=form.email.data)
+            db.session.add(user)
+            db.session.commit()
+        name = form.name.data
+        form.name.data = ''
+        form.email.data = ''
         flash('User added successfully!')
     return render_template('add_user.html', name=name, form=form)
