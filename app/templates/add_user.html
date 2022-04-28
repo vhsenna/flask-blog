@@ -10,7 +10,13 @@
 {% endfor %}
 
 {% if name %}
-<h1>Hello, {{ name }}!</h1>
+<h1>User added!</h1>
+
+<br><br><br>
+{% for user in users_list %}
+{{ user.id}}. {{ user.name }} - {{ user.email }}<br>
+{% endfor %}
+
 {% else %}
 <h1>User List:</h1>
 <form class="w-25" method="POST" action="">

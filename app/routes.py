@@ -36,4 +36,8 @@ def add_user():
         form.name.data = ''
         form.email.data = ''
         flash('User added successfully!')
-    return render_template('add_user.html', name=name, form=form)
+    users_list = User.query.order_by(User.date_added)
+    return render_template('add_user.html',
+        name=name,
+        form=form,
+        users_list=users_list)
