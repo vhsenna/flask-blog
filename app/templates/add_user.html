@@ -15,7 +15,7 @@
   {% for user in users_list %}
   <tr>
     <td>
-      {{ user.id}}. {{ user.name }} - {{ user.email }}
+      {{ user.id}}. <a href="{{ url_for('update', id=user.id) }}">{{ user.name }}</a> - {{ user.email }}
     </td>
   </tr>
   {% endfor %}
