@@ -29,12 +29,16 @@ def add_user():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None:
-            user = User(name=form.name.data, email=form.email.data)
+            user = User(
+                name=form.name.data,
+                email=form.email.data,
+                username=form.username.data)
             db.session.add(user)
             db.session.commit()
         name = form.name.data
         form.name.data = ''
         form.email.data = ''
+        form.username.data = ''
         flash('User added successfully!')
     users_list = User.query.order_by(User.date_added)
     return render_template('add_user.html',
@@ -49,6 +53,7 @@ def update(id):
     if request.method == 'POST':
         new_data.name = request.form['name']
         new_data.email = request.form['email']
+        new_data.username = request.form['username']
         try:
             db.session.commit()
             flash('User updated successfully!')

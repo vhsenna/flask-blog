@@ -16,14 +16,22 @@
 <div class="shadow-none p-3 mb-5 bg-light rounded">
   <form class="w-25" method="POST" action="">
     {{ form.hidden_tag() }}
+
     <div class="mb-3">
       {{ form.name.label(class="form-label") }}
       {{ form.name(class="form-control") }}
     </div>
+
     <div class="mb-3">
       {{ form.email.label(class="form-label") }}
       {{ form.email(class="form-control") }}
     </div>
+
+    <div class="mb-3">
+      {{ form.username.label(class="form-label") }}
+      {{ form.username(class="form-control") }}
+    </div>
+
     {{ form.submit(class="btn btn-sm btn-secondary") }}
   </form>
 </div>
@@ -34,7 +42,7 @@
   {% for user in users_list %}
   <tr>
     <td>
-      {{ user.id}}. <a href="{{ url_for('update', id=user.id) }}">{{ user.name }}</a> - {{ user.email }}
+      {{ user.id}}. <a href="{{ url_for('update', id=user.id) }}">{{ user.name }}</a> - {{ user.email }} - {{ user.username }}
     </td>
   </tr>
   {% endfor %}
