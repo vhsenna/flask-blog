@@ -1,6 +1,6 @@
 from flask import render_template, flash
 from app import app
-from app.forms import NameForm
+from app.forms import *
 
 @app.route('/')
 def index():
@@ -20,3 +20,7 @@ def name():
         form.name.data = ''
         flash('Form submitted successfully!')
     return render_template('name.html', name=name, form=form)
+
+@app.route('/user/add', methods=['GET', 'POST'])
+def add_user():
+    return render_template('add_user.html')
