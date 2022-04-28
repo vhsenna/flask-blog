@@ -41,3 +41,8 @@ def add_user():
         name=name,
         form=form,
         users_list=users_list)
+
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    form = UserForm()
+    new_name = User.query.get_or_404(id)
