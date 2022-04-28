@@ -15,15 +15,15 @@
 {% else %}
 <h1>Update User</h1>
 <div class="shadow-none p-3 mb-5 bg-light rounded">
-  <form class="w-25" method="POST" action="">
+  <form class="w-25" method="POST" action="/update/{{ new_data.id }}">
     {{ form.hidden_tag() }}
     <div class="mb-3">
       {{ form.name.label(class="form-label") }}
-      {{ form.name(class="form-control") }}
+      {{ form.name(class="form-control", value=new_data.name) }}
     </div>
     <div class="mb-3">
       {{ form.email.label(class="form-label") }}
-      {{ form.email(class="form-control") }}
+      {{ form.email(class="form-control", value=new_data.email) }}
     </div>
     {{ form.submit(class="btn btn-sm btn-secondary") }}
   </form>
