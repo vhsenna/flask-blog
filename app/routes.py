@@ -1,4 +1,4 @@
-from flask import render_template, flash
+from flask import render_template, flash, request
 from app import app
 from app.forms import *
 from app.models import *
@@ -45,4 +45,22 @@ def add_user():
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
     form = UserForm()
-    new_name = User.query.get_or_404(id)
+    new_data = User.query.get_or_404(id)
+    if request.method == 'POST':
+        new_data.name = request.form['name']
+        new_data.email = request.form['email']
+        try:
+            db.session.commit()
+            flash('User updated successfully!')
+            return render_template('update.html',
+                form=form,
+                new_data=new_data)
+        except:
+            flash('Error! Looks like there was a problem... Try again!')
+            return render_template('update.html',
+                form=form,
+                new_data=new_data)
+    else:
+        return render_template('update.html',
+                form=form,
+                new_data=new_data)
