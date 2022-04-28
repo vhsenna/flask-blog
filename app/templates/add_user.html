@@ -10,16 +10,6 @@
 {% endfor %}
 
 {% if name %}
-<h1>User list</h1>
-<table class="table table-striped table-bordered mt-4">
-  {% for user in users_list %}
-  <tr>
-    <td>
-      {{ user.id}}. <a href="{{ url_for('update', id=user.id) }}">{{ user.name }}</a> - {{ user.email }}
-    </td>
-  </tr>
-  {% endfor %}
-</table>
 
 {% else %}
 <h1>Add User</h1>
@@ -38,5 +28,16 @@
   </form>
 </div>
 {% endif %}
+
+<h1>User list</h1>
+<table class="table table-striped table-bordered">
+  {% for user in users_list %}
+  <tr>
+    <td>
+      {{ user.id}}. <a href="{{ url_for('update', id=user.id) }}">{{ user.name }}</a> - {{ user.email }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 
 {% endblock %}
