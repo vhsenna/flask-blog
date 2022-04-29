@@ -42,7 +42,11 @@
   {% for user in users_list %}
   <tr>
     <td>
-      {{ user.id}}. <a href="{{ url_for('update', id=user.id) }}">{{ user.name }}</a> - {{ user.email }} - {{ user.username }}
+      {{ user.id}}.
+      <a href="{{ url_for('update', id=user.id) }}">{{ user.name }}</a> -
+      {{ user.email }} -
+      {{ user.username }} |
+      <a href="{{ url_for('delete', id=user.id) }}">Delete
     </td>
   </tr>
   {% endfor %}
