@@ -69,3 +69,24 @@ def update(id):
         return render_template('update.html',
                 form=form,
                 new_data=new_data)
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    user_to_delete = User.query.get_or_404(id)
+    name = None
+    form = UserForm()
+    try:
+        db.session.delete(user_to_delete)
+        db.session.commit()
+        flash('User deleted successfully!')
+        users_list = User.query.order_by(User.date_added)
+        return render_template('add_user.html',
+            name=name,
+            form=form,
+            users_list=users_list)
+    except:
+        flash('Ops! There was a problem deleting user... Try again!')
+        return render_template('add_user.html',
+            name=name,
+            form=form,
+            users_list=users_list)
