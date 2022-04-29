@@ -68,7 +68,8 @@ def update(id):
     else:
         return render_template('update.html',
                 form=form,
-                new_data=new_data)
+                new_data=new_data,
+                id=id)
 
 @app.route('/delete/<int:id>')
 def delete(id):
