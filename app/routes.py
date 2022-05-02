@@ -29,11 +29,13 @@ def add_user():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None:
+            # Hash password before save
+            hashed_password = generate_password_hash(form.password_hash.data, 'sha256')
             user = User(
                 name=form.name.data,
                 email=form.email.data,
                 username=form.username.data,
-                password_hash=form.password_hash.data)
+                password_hash=hashed_password)
             db.session.add(user)
             db.session.commit()
         name = form.name.data
