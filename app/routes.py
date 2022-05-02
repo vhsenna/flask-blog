@@ -32,13 +32,15 @@ def add_user():
             user = User(
                 name=form.name.data,
                 email=form.email.data,
-                username=form.username.data)
+                username=form.username.data,
+                password_hash=form.password_hash.data)
             db.session.add(user)
             db.session.commit()
         name = form.name.data
         form.name.data = ''
         form.email.data = ''
         form.username.data = ''
+        form.password_hash.data = ''
         flash('User added successfully!')
     users_list = User.query.order_by(User.date_added)
     return render_template('add_user.html',
