@@ -12,5 +12,9 @@ class User(db.Model):
     date_added = db.Column(db.DateTime, default=datetime.now)
     password_hash = db.Column(db.String(128))
 
+    @property
+    def password(self):
+        raise AttributeError('Password is not a readable atribute')
+
     def __repr__(self):
         return f'<User {self.name}>'
