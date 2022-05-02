@@ -16,5 +16,9 @@ class User(db.Model):
     def password(self):
         raise AttributeError('Password is not a readable atribute')
 
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password) 
+
     def __repr__(self):
         return f'<User {self.name}>'
