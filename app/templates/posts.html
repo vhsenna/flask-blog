@@ -16,8 +16,8 @@
   <h2>{{ post.title }}</h2>
   <small>by {{ post.author }} | {{ post.date_posted.strftime('%B %d %Y') }}</small><br><br>
   {{ post.content }}
-  <br>
-  <a href="{{ url_for('post', id=post.id) }}">View Post</a>
+  <br><br>
+  <a href="{{ url_for('post', id=post.id) }}" class="btn btn-sm btn-outline-secondary">View Post</a>
 </div>
 {% endfor %}
 
