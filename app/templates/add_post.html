@@ -11,7 +11,7 @@
 
 <h1>Add Blog Post</h1>
 <div class="shadow-none p-3 mb-5 bg-light rounded">
-  <form class="w-25" method="POST" action="">
+  <form class="w-75" method="POST" action="">
     {{ form.hidden_tag() }}
 
     <div class="mb-3">
@@ -31,7 +31,7 @@
 
     <div class="mb-3">
       {{ form.content.label(class="form-label") }}
-      {{ form.content(class="form-control", rows=5) }}
+      {{ form.content(class="form-control", rows=10) }}
     </div>
 
     {{ form.submit(class="btn btn-sm btn-secondary") }}
