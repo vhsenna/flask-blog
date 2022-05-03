@@ -14,3 +14,10 @@ class UserForm(FlaskForm):
     password_hash = PasswordField('Password', validators=[DataRequired(), EqualTo('password_hash2', message='Password must match')])
     password_hash2 = PasswordField('Confirm password', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class PostForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    slug = StringField('Slug', validators=[DataRequired()])
+    content = StringField('Content', validators=[DataRequired()])
+    author = StringField('Author', validators=[DataRequired()])
+    submit = SubmitField('Submit')
