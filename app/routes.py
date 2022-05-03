@@ -1,4 +1,4 @@
-from flask import render_template, flash, request
+from flask import render_template, flash, request, redirect, url_for
 from app import app
 from app.forms import *
 from app.models import *
@@ -140,3 +140,5 @@ def edit_post(id):
         post.content = form.content.data
         db.session.add(post)
         db.session.commit()
+        flash('Post has been updated!')
+        return redirect(url_for('post', id=post.id))
