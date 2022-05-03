@@ -111,3 +111,4 @@ def add_post():
         form.author.data = ''
         db.session.add(post)
         db.session.commit()
+        flash('Blog post submitted successfully!')
