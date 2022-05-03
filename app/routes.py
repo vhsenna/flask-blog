@@ -123,8 +123,13 @@ def posts():
     return render_template('posts.html',
         posts=posts)
 
-@app.route('/posts/<int:id>')
+@app.route('/post/<int:id>')
 def post(id):
     post = Post.query.get_or_404(id)
     return render_template('post.html',
         post=post)
+
+@app.route('/post/edit/<int:id>', methods=['GET', 'POST'])
+def edit_post(id):
+    post = Post.query.get_or_404(id)
+    form = PostForm()
