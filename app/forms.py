@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError
 from wtforms.validators import DataRequired, EqualTo, Length
 from app import app
+from wtforms.widgets import TextArea
 
 class NameForm(FlaskForm):
     name = StringField('What is your name?', validators=[DataRequired()])
@@ -18,6 +19,6 @@ class UserForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     slug = StringField('Slug', validators=[DataRequired()])
-    content = StringField('Content', validators=[DataRequired()])
+    content = StringField('Content', validators=[DataRequired()], widget=TextArea())
     author = StringField('Author', validators=[DataRequired()])
     submit = SubmitField('Submit')
