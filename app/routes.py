@@ -109,4 +109,5 @@ def add_post():
         form.slug.data = ''
         form.content.data = ''
         form.author.data = ''
-        
+        db.session.add(post)
+        db.session.commit()
