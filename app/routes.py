@@ -133,3 +133,10 @@ def post(id):
 def edit_post(id):
     post = Post.query.get_or_404(id)
     form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.slug = form.slug.data
+        post.author = form.author.data
+        post.content = form.content.data
+        db.session.add(post)
+        db.session.commit()
