@@ -119,4 +119,6 @@ def add_post():
 
 @app.route('/posts')
 def posts():
-    return render_template('posts.html')
+    posts = Post.query.order_by(Post.date_posted)
+    return render_template('posts.html',
+        posts=posts)
