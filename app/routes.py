@@ -116,3 +116,7 @@ def add_post():
         flash('Blog post submitted successfully!')
     return render_template('add_post.html',
         form=form)
+
+@app.route('/posts')
+def posts():
+    return render_template('posts.html')
