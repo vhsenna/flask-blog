@@ -23,3 +23,12 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.name}>'
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(250))
+    slug = db.Column(db.String(250))
+    content = db.Column(db.Text)
+    author = db.Column(db.String(150))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    
