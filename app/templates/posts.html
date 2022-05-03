@@ -11,4 +11,12 @@
 
 <h1>Blog Posts</h1>
 
+{% for post in posts %}
+{{ post.title }}<br>
+{{ post.slug }}<br>
+{{ post.content }}<br>
+{{ post.author }}<br>
+{{ post.date_posted }}<br><br>
+{% endfor %}
+
 {% endblock %}
