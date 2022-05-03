@@ -20,7 +20,9 @@ def name():
         name = form.name.data
         form.name.data = ''
         flash('Form submitted successfully!')
-    return render_template('name.html', name=name, form=form)
+    return render_template('name.html',
+        name=name,
+        form=form)
 
 @app.route('/user/add', methods=['GET', 'POST'])
 def add_user():
@@ -71,9 +73,9 @@ def update(id):
                 new_data=new_data)
     else:
         return render_template('update.html',
-                form=form,
-                new_data=new_data,
-                id=id)
+            form=form,
+            new_data=new_data,
+            id=id)
 
 @app.route('/delete/<int:id>')
 def delete(id):
@@ -112,3 +114,5 @@ def add_post():
         db.session.add(post)
         db.session.commit()
         flash('Blog post submitted successfully!')
+    return render_template('add_post.html',
+        form=form)
