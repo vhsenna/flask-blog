@@ -14,7 +14,7 @@
 {% for post in posts %}
 <div class="shadow p-3 mb-5 bg-light rounded">
   <h2>{{ post.title }}</h2>
-  <small>by {{ post.author }} | {{ post.date_posted }}</small><br><br>
+  <small>by {{ post.author }} | {{ post.date_posted.strftime('%B %d %Y') }}</small><br><br>
   {{ post.content }}
 </div>
 {% endfor %}
