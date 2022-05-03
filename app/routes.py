@@ -105,3 +105,8 @@ def add_post():
             slug=form.slug.data,
             content=form.content.data,
             author=form.author.data)
+        form.title.data = ''
+        form.slug.data = ''
+        form.content.data = ''
+        form.author.data = ''
+        
