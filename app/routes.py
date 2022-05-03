@@ -95,3 +95,13 @@ def delete(id):
             name=name,
             form=form,
             users_list=users_list)
+
+@app.route('/add-post', methods=['GET', 'POST'])
+def add_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(
+            title=form.title.data,
+            slug=form.slug.data,
+            content=form.content.data,
+            author=form.author.data)
