@@ -139,11 +139,12 @@ def user(name):
 def add_post():
     form = PostForm()
     if form.validate_on_submit():
+        poster = current_user.id
         post = Post(
             title=form.title.data,
             slug=form.slug.data,
-            content=form.content.data,
-            author=form.author.data)
+            poster_id=poster,
+            content=form.content.data)
         form.title.data = ''
         form.slug.data = ''
         form.content.data = ''
