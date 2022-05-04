@@ -65,10 +65,10 @@
           </li>
 
         </ul>
-        
+
         <!-- Search -->
         <form class="d-flex" method="POST" action="{{ url_for('search') }}">
-          {{ form.hidden_tag }}
+          {{ form.hidden_tag() }}
           <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
         </form>
