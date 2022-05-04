@@ -9,6 +9,7 @@
 </div>
 {% endfor %}
 
+{% if id == current_user.id %}
 <h1>Update User</h1>
 <div class="shadow-none p-3 mb-5 bg-light rounded">
   <form class="w-25" method="POST" action="/update/{{ new_data.id }}">
@@ -34,5 +35,14 @@
     <a href="{{ url_for('delete', id=id) }}" class="btn btn-sm btn-danger">Delete</a>
   </form>
 </div>
+
+{% else %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  Sorry, you can not edit this user!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<h2>Access denied!</h2>
+<p>Sorry, you can not access this user profile.</p>
+{% endif %}
 
 {% endblock %}
