@@ -16,8 +16,8 @@
     {{ current_user.name }}
   </div>
   <div class="card-body">
+    <h3>User Dashboard</h3>
     <p class="card-text">
-      <h3>User dashboard</h3>
       <strong>Name: </strong>{{ current_user.name }}<br>
       <strong>Username: </strong>{{ current_user.username }}<br>
       <strong>User ID: </strong>{{ current_user.id }}<br>
@@ -25,6 +25,7 @@
       <strong>Date joined: </strong>{{ current_user.date_added }}<br>
     </p>
     <a href="{{ url_for('logout') }}" class="btn btn-sm btn-secondary">Logout</a>
+    <a href="{{ url_for('update', id=current_user.id) }}", class="btn btn-sm btn-secondary">Update profile</a>
   </div>
 </div>
 
