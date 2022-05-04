@@ -159,18 +159,20 @@ def add_post():
 @login_required
 def delete_post(id):
     post_to_delete = Post.query.get_or_404(id)
-    try:
-        db.session.delete(post_to_delete)
-        db.session.commit()
-        flash('Blog post was deleted successfully!')
-        posts = Post.query.order_by(Post.date_posted.desc())
-        return render_template('posts.html',
-            posts=posts)
-    except:
-        flash('Whoops! There was a problem deleting post... Try again!')
-        posts = Post.query.order_by(Post.date_posted.desc())
-        return render_template('posts.html',
-            posts=posts)
+    id = current_user.id
+    if id == post_to_delete.poster.id:
+        try:
+            db.session.delete(post_to_delete)
+            db.session.commit()
+            flash('Blog post was deleted successfully!')
+            posts = Post.query.order_by(Post.date_posted.desc())
+            return render_template('posts.html',
+                posts=posts)
+        except:
+            flash('Whoops! There was a problem deleting post... Try again!')
+            posts = Post.query.order_by(Post.date_posted.desc())
+            return render_template('posts.html',
+                posts=posts)
 
 @app.route('/post/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
