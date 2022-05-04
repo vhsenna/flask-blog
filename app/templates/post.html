@@ -14,7 +14,7 @@
 <div class="shadow p-3 mb-5 bg-light rounded">
   <h2>{{ post.title }}</h2>
   <small>Posted by {{ post.poster.name }} | {{ post.date_posted.strftime('%B %d %Y') }}</small><br><br>
-  {{ post.content }}
+  {{ post.content|safe }}
 </div>
 
 <a href="{{ url_for('posts') }}" class="btn btn-sm btn-outline-secondary">Back to Blog</a>
