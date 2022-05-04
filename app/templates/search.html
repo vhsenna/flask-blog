@@ -6,6 +6,9 @@
 <p> {{ search }}</p>
 <br>
 
-{{ posts }}
+{% for post in posts %}
+{{ post.title }}
+<br>
+{% endfor %}
 
 {% endblock %}
