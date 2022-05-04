@@ -6,7 +6,12 @@ from app.models import *
 @app.route('/admin')
 @login_required
 def admin():
-    return render_template('admin.html')
+    id = current_user.id
+    if id == 1:
+        return render_template('admin.html')
+    else:
+        flash('Sorry, you must be the Admin to access the Admin Page!')
+        return redirect(url_for('dashboard'))
 
 # Index route
 @app.route('/')
