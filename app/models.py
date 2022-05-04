@@ -1,6 +1,7 @@
 from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,4 +32,3 @@ class Post(db.Model):
     content = db.Column(db.Text)
     author = db.Column(db.String(150))
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    
