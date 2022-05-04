@@ -74,6 +74,7 @@ def name():
         form=form)
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
+@login_required
 def update(id):
     form = UserForm()
     new_data = User.query.get_or_404(id)
