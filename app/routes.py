@@ -172,5 +172,6 @@ def login():
         form=form)
 
 @app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     return render_template('dashboard.html')
