@@ -164,3 +164,9 @@ def delete_post(id):
         posts = Post.query.order_by(Post.date_posted.desc())
         return render_template('posts.html',
             posts=posts)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html',
+        form=form)
