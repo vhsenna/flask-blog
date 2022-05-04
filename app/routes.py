@@ -173,6 +173,11 @@ def delete_post(id):
             posts = Post.query.order_by(Post.date_posted.desc())
             return render_template('posts.html',
                 posts=posts)
+    else:
+        flash('You are not authorized to delete that post!')
+        posts = Post.query.order_by(Post.date_posted.desc())
+        return render_template('posts.html',
+            posts=posts)
 
 @app.route('/post/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
