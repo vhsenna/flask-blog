@@ -9,9 +9,9 @@ class NameForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class UserForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
     name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
-    username = StringField('Username', validators=[DataRequired()])
     password_hash = PasswordField('Password', validators=[DataRequired(), EqualTo('password_hash2', message='Password must match')])
     password_hash2 = PasswordField('Confirm password', validators=[DataRequired()])
     submit = SubmitField('Submit')

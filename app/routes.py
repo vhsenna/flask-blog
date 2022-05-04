@@ -34,16 +34,16 @@ def add_user():
             # Hash password before save
             hashed_password = generate_password_hash(form.password_hash.data, 'sha256')
             user = User(
+                username=form.username.data,
                 name=form.name.data,
                 email=form.email.data,
-                username=form.username.data,
                 password_hash=hashed_password)
             db.session.add(user)
             db.session.commit()
         name = form.name.data
+        form.username.data = ''
         form.name.data = ''
         form.email.data = ''
-        form.username.data = ''
         form.password_hash.data = ''
         flash('User added successfully!')
     users_list = User.query.order_by(User.date_added)
@@ -57,9 +57,9 @@ def update(id):
     form = UserForm()
     new_data = User.query.get_or_404(id)
     if request.method == 'POST':
+        new_data.username = request.form['username']
         new_data.name = request.form['name']
         new_data.email = request.form['email']
-        new_data.username = request.form['username']
         try:
             db.session.commit()
             flash('User updated successfully!')
