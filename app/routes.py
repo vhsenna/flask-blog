@@ -220,4 +220,9 @@ def posts():
 
 @app.route('/search', methods=['POST'])
 def search():
-    pass
+    form = SearchForm()
+    if form.validate_on_submit():
+        post.search = form.search.data
+        return render_template('search.html',
+            form=form,
+            search=post.search)
