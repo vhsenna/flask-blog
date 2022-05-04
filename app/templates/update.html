@@ -9,10 +9,6 @@
 </div>
 {% endfor %}
 
-{% if name %}
-<h1>Update User...</h1>
-
-{% else %}
 <h1>Update User</h1>
 <div class="shadow-none p-3 mb-5 bg-light rounded">
   <form class="w-25" method="POST" action="/update/{{ new_data.id }}">
@@ -38,6 +34,5 @@
     <a href="{{ url_for('delete', id=id) }}" class="btn btn-sm btn-danger">Delete</a>
   </form>
 </div>
-{% endif %}
 
 {% endblock %}
