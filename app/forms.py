@@ -22,3 +22,8 @@ class PostForm(FlaskForm):
     content = StringField('Content', validators=[DataRequired()], widget=TextArea())
     author = StringField('Author', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')
