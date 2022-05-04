@@ -3,6 +3,10 @@ from app import app
 from app.forms import *
 from app.models import *
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
 # Index route
 @app.route('/')
 def index():
