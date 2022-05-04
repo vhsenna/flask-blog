@@ -155,5 +155,8 @@ def delete_post(id):
     try:
         db.session.delete(post_to_delete)
         db.session.commit()
-        
+        flash('Blog post was deleted successfully!')
+        posts = Post.query.order_by(Post.date_posted.desc())
+        return render_template('posts.html',
+            posts=posts)
     except:
