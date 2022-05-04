@@ -92,7 +92,7 @@ def delete(id):
             form=form,
             users_list=users_list)
     except:
-        flash('Ops! There was a problem deleting user... Try again!')
+        flash('Whoops! There was a problem deleting user... Try again!')
         return render_template('add_user.html',
             name=name,
             form=form,
@@ -160,3 +160,7 @@ def delete_post(id):
         return render_template('posts.html',
             posts=posts)
     except:
+        flash('Whoops! There was a problem deleting post... Try again!')
+        posts = Post.query.order_by(Post.date_posted.desc())
+        return render_template('posts.html',
+            posts=posts)
