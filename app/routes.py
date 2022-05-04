@@ -99,6 +99,7 @@ def delete(id):
             users_list=users_list)
 
 @app.route('/add-post', methods=['GET', 'POST'])
+@login_required
 def add_post():
     form = PostForm()
     if form.validate_on_submit():
