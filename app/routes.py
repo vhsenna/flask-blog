@@ -200,6 +200,11 @@ def edit_post(id):
         form.content.data = post.content
         return render_template('edit_post.html',
             form=form)
+    else:
+        flash('You are not authorized to edit that post!')
+        posts = Post.query.order_by(Post.date_posted.desc())
+        return render_template('posts.html',
+            posts=posts)
 
 @app.route('/post/<int:id>')
 def post(id):
