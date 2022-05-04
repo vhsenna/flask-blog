@@ -10,6 +10,7 @@ class Post(db.Model):
     content = db.Column(db.Text)
     # author = db.Column(db.String(150))
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    # Foreign key to link users
     poster_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class User(db.Model, UserMixin):
@@ -19,6 +20,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False, unique=True)
     date_added = db.Column(db.DateTime, default=datetime.now)
     password_hash = db.Column(db.String(128))
+    # User can have many posts
+    posts = db.relationship('Post', backref='poster')
 
     @property
     def password(self):
