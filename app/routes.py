@@ -148,7 +148,7 @@ def add_post():
         form.title.data = ''
         form.slug.data = ''
         form.content.data = ''
-        form.author.data = ''
+        # form.author.data = ''
         db.session.add(post)
         db.session.commit()
         flash('Blog post submitted successfully!')
@@ -179,7 +179,7 @@ def edit_post(id):
     if form.validate_on_submit():
         post.title = form.title.data
         post.slug = form.slug.data
-        post.author = form.author.data
+        # post.author = form.author.data
         post.content = form.content.data
         db.session.add(post)
         db.session.commit()
@@ -187,7 +187,7 @@ def edit_post(id):
         return redirect(url_for('post', id=post.id))
     form.title.data = post.title
     form.slug.data = post.slug
-    form.author.data = post.author
+    # form.author.data = post.author
     form.content.data = post.content
     return render_template('edit_post.html',
         form=form)
