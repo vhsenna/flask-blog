@@ -65,12 +65,14 @@ def update(id):
             flash('User updated successfully!')
             return render_template('update.html',
                 form=form,
-                new_data=new_data)
+                new_data=new_data,
+                id=id)
         except:
             flash('Error! Looks like there was a problem... Try again!')
             return render_template('update.html',
                 form=form,
-                new_data=new_data)
+                new_data=new_data,
+                id=id)
     else:
         return render_template('update.html',
             form=form,
