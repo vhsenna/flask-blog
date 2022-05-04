@@ -176,6 +176,10 @@ def login():
                 login_user(user)
                 flash('Login successfull')
                 return redirect(url_for('dashboard'))
+            else:
+                flash('Wrong password... Try again!')
+        else:
+            flash('That user does not exist... Try again!')
     return render_template('login.html',
         form=form)
 
