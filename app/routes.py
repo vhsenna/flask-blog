@@ -218,6 +218,7 @@ def posts():
     return render_template('posts.html',
         posts=posts)
 
+# Search routes
 @app.route('/search', methods=['POST'])
 def search():
     form = SearchForm()
@@ -226,3 +227,8 @@ def search():
         return render_template('search.html',
             form=form,
             search=post.search)
+
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)
