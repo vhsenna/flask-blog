@@ -222,11 +222,17 @@ def posts():
 @app.route('/search', methods=['POST'])
 def search():
     form = SearchForm()
+    posts = Post.query
     if form.validate_on_submit():
+        # Get data from submitted form
         post.search = form.search.data
+        # Query the database
+        posts = posts.filter(Post.content.like('%' + post.search + '%'))
+        posts = posts.order_by(Post.title.desc()).all()
         return render_template('search.html',
             form=form,
-            search=post.search)
+            search=post.search,
+            posts=posts)
 
 @app.context_processor
 def base():
