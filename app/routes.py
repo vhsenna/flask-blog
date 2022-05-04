@@ -156,6 +156,7 @@ def add_post():
         form=form)
 
 @app.route('/post/delete/<int:id>')
+@login_required
 def delete_post(id):
     post_to_delete = Post.query.get_or_404(id)
     try:
