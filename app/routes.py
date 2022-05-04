@@ -4,6 +4,7 @@ from app.forms import *
 from app.models import *
 
 @app.route('/admin')
+@login_required
 def admin():
     return render_template('admin.html')
 
