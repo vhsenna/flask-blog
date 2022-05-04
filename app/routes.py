@@ -131,6 +131,7 @@ def post(id):
         post=post)
 
 @app.route('/post/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_post(id):
     post = Post.query.get_or_404(id)
     form = PostForm()
