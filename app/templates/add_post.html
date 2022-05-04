@@ -2,8 +2,6 @@
 
 {% block content %}
 
-{{ ckeditor.load() }}
-
 {% for message in get_flashed_messages() %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   {{ message }}
@@ -34,4 +32,7 @@
     {{ form.submit(class="btn btn-sm btn-secondary") }}
   </form>
 
-{% endblock %}
+  {{ ckeditor.load() }}
+  {{ ckeditor.config(name='content') }}
+
+  {% endblock %}
