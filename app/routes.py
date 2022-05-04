@@ -148,3 +148,12 @@ def edit_post(id):
     form.content.data = post.content
     return render_template('edit_post.html',
         form=form)
+
+@app.route('/post/delete/<int:id>')
+def delete_post(id):
+    post_to_delete = Post.query.get_or_404(id)
+    try:
+        db.session.delete(post_to_delete)
+        db.session.commit()
+        
+    except:
