@@ -217,3 +217,7 @@ def posts():
     posts = Post.query.order_by(Post.date_posted.desc())
     return render_template('posts.html',
         posts=posts)
+
+@app.route('/search', methods=['POST'])
+def search():
+    pass
