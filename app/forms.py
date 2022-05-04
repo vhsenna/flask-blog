@@ -17,7 +17,7 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     slug = StringField('Slug', validators=[DataRequired()])
     content = StringField('Content', validators=[DataRequired()], widget=TextArea())
-    author = StringField('Author', validators=[DataRequired()])
+    author = StringField('Author')
     submit = SubmitField('Submit')
 
 class UserForm(FlaskForm):
