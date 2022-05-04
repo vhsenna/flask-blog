@@ -17,17 +17,26 @@
   </div>
   <div class="card-body">
     <p class="card-text">
-      <strong>Name: </strong>{{ current_user.name }}<br>
-      <strong>Username: </strong>{{ current_user.username }}<br>
-      <strong>User ID: </strong>{{ current_user.id }}<br>
-      <strong>Email: </strong>{{ current_user.email }}<br>
-      <strong>Date joined: </strong>{{ current_user.date_added }}<br>
-    </p>
-    <a href="{{ url_for('logout') }}" class="btn btn-sm btn-secondary">Logout</a>
-    <a href="{{ url_for('update', id=current_user.id) }}", class="btn btn-sm btn-secondary">Update profile</a>
-    <a href="{{ url_for('delete', id=current_user.id) }}" class="btn btn-sm btn-danger">Delete</a>
 
-    <img src="{{ url_for('static', filename='images/default_profile_pic.png') }}" alt="">
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <strong>Name: </strong>{{ current_user.name }}<br>
+            <strong>Username: </strong>{{ current_user.username }}<br>
+            <strong>User ID: </strong>{{ current_user.id }}<br>
+            <strong>Email: </strong>{{ current_user.email }}<br>
+            <strong>Date joined: </strong>{{ current_user.date_added }}<br><br>
+            <a href="{{ url_for('logout') }}" class="btn btn-sm btn-secondary">Logout</a>
+            <a href="{{ url_for('update', id=current_user.id) }}" , class="btn btn-sm btn-secondary">Update profile</a>
+            <a href="{{ url_for('delete', id=current_user.id) }}" class="btn btn-sm btn-danger">Delete</a>
+          </div>
+          <div class="col-4">
+            <img src="{{ url_for('static', filename='images/default_profile_pic.png') }}" width="200" align="right" alt="">
+          </div>
+        </div>
+      </div>
+    </p>
+
   </div>
 </div>
 
