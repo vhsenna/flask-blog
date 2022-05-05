@@ -93,6 +93,7 @@ def update(id):
         new_data.name = request.form['name']
         new_data.email = request.form['email']
         new_data.about = request.form['about']
+        new_data.profile_image = request.files['profile_image']
         try:
             db.session.commit()
             flash('User updated successfully!')
