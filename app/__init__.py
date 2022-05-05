@@ -17,7 +17,7 @@ login_manager.login_view = 'login'
 
 ckeditor = CKEditor(app)
 
-UPLOAD_FOLDER='static/images/'
+UPLOAD_FOLDER='app/static/images/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 from app import errors, forms, models, routes

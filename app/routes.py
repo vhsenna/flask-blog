@@ -107,7 +107,7 @@ def update(id):
         new_data.profile_image = profile_image_name
         try:
             db.session.commit()
-            save.save(os.path.join(app.config['UPLOAD_FOLDER']), profile_image_name)
+            save.save(os.path.join(app.config['UPLOAD_FOLDER'], profile_image_name))
             flash('User updated successfully!')
             return render_template('update.html',
                 form=form,
