@@ -101,6 +101,7 @@ def update(id):
         profile_image_filename = secure_filename(new_data.profile_image.filename)
         # Set UUID
         profile_image_name = str(uuid.uuid1()) + '_' + profile_image_filename
+        new_data.profile_image = profile_image_name
         try:
             db.session.commit()
             flash('User updated successfully!')
