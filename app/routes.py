@@ -97,7 +97,8 @@ def update(id):
         new_data.email = request.form['email']
         new_data.about = request.form['about']
         new_data.profile_image = request.files['profile_image']
-
+        # Grab image name
+        profile_image_filename = secure_filename(new_data.profile_image.filename)
         try:
             db.session.commit()
             flash('User updated successfully!')
