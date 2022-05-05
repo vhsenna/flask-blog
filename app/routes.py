@@ -1,4 +1,7 @@
-from flask import render_template, flash, request, redirect, url_for
+import os
+import uuid as uuid
+from flask import flash, redirect, render_template, request, url_for
+from werkzeug.utils import secure_filename
 from app import app
 from app.forms import *
 from app.models import *
@@ -94,6 +97,7 @@ def update(id):
         new_data.email = request.form['email']
         new_data.about = request.form['about']
         new_data.profile_image = request.files['profile_image']
+
         try:
             db.session.commit()
             flash('User updated successfully!')
