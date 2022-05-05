@@ -97,24 +97,33 @@ def update(id):
         new_data.name = request.form['name']
         new_data.email = request.form['email']
         new_data.about = request.form['about']
-        new_data.profile_image = request.files['profile_image']
-        # Grab image name
-        profile_image_filename = secure_filename(new_data.profile_image.filename)
-        # Set UUID
-        profile_image_name = str(uuid.uuid1()) + '_' + profile_image_filename
-        # Save image
-        save = request.files['profile_image']
-        new_data.profile_image = profile_image_name
-        try:
+        # Check for profile image
+        if request.files['profile_image']:
+            new_data.profile_image = request.files['profile_image']
+            # Grab image name
+            profile_image_filename = secure_filename(new_data.profile_image.filename)
+            # Set UUID
+            profile_image_name = str(uuid.uuid1()) + '_' + profile_image_filename
+            # Save image
+            save = request.files['profile_image']
+            new_data.profile_image = profile_image_name
+            try:
+                db.session.commit()
+                save.save(os.path.join(app.config['UPLOAD_FOLDER'], profile_image_name))
+                flash('User updated successfully!')
+                return render_template('update.html',
+                    form=form,
+                    new_data=new_data,
+                    id=id)
+            except:
+                flash('Error! Looks like there was a problem... Try again!')
+                return render_template('update.html',
+                    form=form,
+                    new_data=new_data,
+                    id=id)
+        else:
             db.session.commit()
-            save.save(os.path.join(app.config['UPLOAD_FOLDER'], profile_image_name))
             flash('User updated successfully!')
-            return render_template('update.html',
-                form=form,
-                new_data=new_data,
-                id=id)
-        except:
-            flash('Error! Looks like there was a problem... Try again!')
             return render_template('update.html',
                 form=form,
                 new_data=new_data,
