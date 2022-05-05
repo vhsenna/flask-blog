@@ -15,6 +15,7 @@ class NameForm(FlaskForm):
     name = StringField('What is your name?', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+# Post form
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     slug = StringField('Slug', validators=[DataRequired()])
@@ -22,10 +23,12 @@ class PostForm(FlaskForm):
     author = StringField('Author')
     submit = SubmitField('Submit')
 
+# Search form
 class SearchForm(FlaskForm):
     search = StringField('Search', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+# User form
 class UserForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     name = StringField('Name', validators=[DataRequired()])

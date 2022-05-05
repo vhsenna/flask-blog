@@ -7,6 +7,7 @@ from app import app
 from app.forms import *
 from app.models import *
 
+## Admin route
 @app.route('/admin')
 @login_required
 def admin():
@@ -17,17 +18,19 @@ def admin():
         flash('Sorry, you must be the Admin to access the Admin Page!')
         return redirect(url_for('dashboard'))
 
-# Index route
+## Index route
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# User routes
+## User routes
+# Dashboard route
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     return render_template('dashboard.html')
 
+# Delete user route
 @app.route('/delete/<int:id>')
 def delete(id):
     user_to_delete = User.query.get_or_404(id)
@@ -49,6 +52,7 @@ def delete(id):
             form=form,
             users_list=users_list)
 
+# Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -67,6 +71,7 @@ def login():
     return render_template('login.html',
         form=form)
 
+# Logout route
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
@@ -74,6 +79,7 @@ def logout():
     flash('You have been logged out!')
     return redirect(url_for('login'))
 
+# Name route
 @app.route('/name', methods=['GET', 'POST'])
 def name():
     name = None
@@ -87,6 +93,7 @@ def name():
         name=name,
         form=form)
 
+# Update profile user
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 @login_required
 def update(id):
@@ -134,6 +141,7 @@ def update(id):
             new_data=new_data,
             id=id)
 
+# Add user route
 @app.route('/user/add', methods=['GET', 'POST'])
 def add_user():
     name = None
@@ -162,11 +170,13 @@ def add_user():
         form=form,
         users_list=users_list)
 
+# localhost:5000/user/<name>
 @app.route('/user/<name>')
 def user(name):
     return render_template('user.html', name=name)
 
-# Post routes
+## Post routes
+# Add post route
 @app.route('/add-post', methods=['GET', 'POST'])
 @login_required
 def add_post():
@@ -178,16 +188,21 @@ def add_post():
             slug=form.slug.data,
             poster_id=poster,
             content=form.content.data)
+        # Clear the form
         form.title.data = ''
         form.slug.data = ''
         form.content.data = ''
         #form.author.data = ''
+        # Add post data to database
         db.session.add(post)
         db.session.commit()
+        # Return a message
         flash('Blog post submitted successfully!')
+    # Redirect to the webpage
     return render_template('add_post.html',
         form=form)
 
+# Delete post route
 @app.route('/post/delete/<int:id>')
 @login_required
 def delete_post(id):
@@ -197,21 +212,27 @@ def delete_post(id):
         try:
             db.session.delete(post_to_delete)
             db.session.commit()
+            # Return a message
             flash('Blog post was deleted successfully!')
+            # Grab all the posts from the database
             posts = Post.query.order_by(Post.date_posted.desc())
             return render_template('posts.html',
                 posts=posts)
         except:
+            # Return an error message
             flash('Whoops! There was a problem deleting post... Try again!')
             posts = Post.query.order_by(Post.date_posted.desc())
             return render_template('posts.html',
                 posts=posts)
     else:
+        # Return a message
         flash('You are not authorized to delete that post!')
+		# Grab all the posts from the database
         posts = Post.query.order_by(Post.date_posted.desc())
         return render_template('posts.html',
             posts=posts)
 
+# Edit post route
 @app.route('/post/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_post(id):
@@ -222,6 +243,7 @@ def edit_post(id):
         post.slug = form.slug.data
         #post.author = form.author.data
         post.content = form.content.data
+        # Update database
         db.session.add(post)
         db.session.commit()
         flash('Post has been updated!')
@@ -239,19 +261,22 @@ def edit_post(id):
         return render_template('posts.html',
             posts=posts)
 
+# Individual post route
 @app.route('/post/<int:id>')
 def post(id):
     post = Post.query.get_or_404(id)
     return render_template('post.html',
         post=post)
 
+# Posts route
 @app.route('/posts')
 def posts():
+	# Grab all the posts from the database
     posts = Post.query.order_by(Post.date_posted.desc())
     return render_template('posts.html',
         posts=posts)
 
-# Search routes
+## Search routes
 @app.route('/search', methods=['POST'])
 def search():
     form = SearchForm()
@@ -267,6 +292,7 @@ def search():
             search=post.search,
             posts=posts)
 
+## Pass stuff to navbar
 @app.context_processor
 def base():
     form = SearchForm()
