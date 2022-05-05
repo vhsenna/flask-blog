@@ -92,6 +92,7 @@ def update(id):
         new_data.username = request.form['username']
         new_data.name = request.form['name']
         new_data.email = request.form['email']
+        new_data.about = request.form['about']
         try:
             db.session.commit()
             flash('User updated successfully!')

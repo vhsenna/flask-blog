@@ -30,6 +30,11 @@
       {{ form.email(class="form-control", value=new_data.email) }}
     </div>
 
+    <div class="mb-3">
+      {{ form.about.label(class="form-label") }}
+      <textarea class="form-control" name="about">{{ new_data.about }}</textarea>
+    </div>
+
     {{ form.submit(class="btn btn-sm btn-secondary") }}
 
     <a href="{{ url_for('delete', id=id) }}" class="btn btn-sm btn-danger">Delete</a>
