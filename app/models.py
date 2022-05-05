@@ -8,7 +8,7 @@ class Post(db.Model):
     title = db.Column(db.String(250))
     slug = db.Column(db.String(250))
     content = db.Column(db.Text)
-    # author = db.Column(db.String(150))
+    #author = db.Column(db.String(150))
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     # Foreign key to link users
     poster_id = db.Column(db.Integer, db.ForeignKey('user.id'))
