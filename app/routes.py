@@ -99,6 +99,8 @@ def update(id):
         new_data.profile_image = request.files['profile_image']
         # Grab image name
         profile_image_filename = secure_filename(new_data.profile_image.filename)
+        # Set UUID
+        profile_image_name = str(uuid.uuid1()) + '_' + profile_image_filename
         try:
             db.session.commit()
             flash('User updated successfully!')
