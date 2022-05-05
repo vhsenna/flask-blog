@@ -26,6 +26,7 @@
             <strong>User ID: </strong>{{ current_user.id }}<br>
             <strong>Email: </strong>{{ current_user.email }}<br>
             <strong>About: </strong>{{ current_user.about }}<br>
+            <strong>Profile Image: </strong>{{ current_user.profile_image }}<br>
             <strong>Date joined: </strong>{{ current_user.date_added }}<br><br>
             <a href="{{ url_for('logout') }}" class="btn btn-sm btn-secondary">Logout</a>
             <a href="{{ url_for('update', id=current_user.id) }}" , class="btn btn-sm btn-secondary">Update profile</a>
