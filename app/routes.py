@@ -1,5 +1,6 @@
 import os
 import uuid as uuid
+from config import Config
 from flask import flash, redirect, render_template, request, url_for
 from werkzeug.utils import secure_filename
 from app import app
@@ -101,9 +102,12 @@ def update(id):
         profile_image_filename = secure_filename(new_data.profile_image.filename)
         # Set UUID
         profile_image_name = str(uuid.uuid1()) + '_' + profile_image_filename
+        # Save image
+        save = request.files['profile_image']
         new_data.profile_image = profile_image_name
         try:
             db.session.commit()
+            save.save(os.path.join(app.config['UPLOAD_FOLDER']), profile_image_name)
             flash('User updated successfully!')
             return render_template('update.html',
                 form=form,
