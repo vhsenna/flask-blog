@@ -12,7 +12,7 @@
 {% if id == current_user.id %}
 <h1>Update User</h1>
 <div class="shadow-none p-3 mb-5 bg-light rounded">
-  <form class="w-25" method="POST" action="/update/{{ new_data.id }}">
+  <form class="w-25" method="POST" enctype="multipart/form-data" action="/update/{{ new_data.id }}">
     {{ form.hidden_tag() }}
 
     <div class="mb-3">
@@ -33,6 +33,11 @@
     <div class="mb-3">
       {{ form.about.label(class="form-label") }}
       <textarea class="form-control" name="about">{{ new_data.about }}</textarea>
+    </div>
+
+    <div class="mb-3">
+      {{ form.profile_image.label(class="form-label") }}
+      {{ form.profile_image(class="form-control", value=new_data.profile_image) }}
     </div>
 
     {{ form.submit(class="btn btn-sm btn-secondary") }}
